@@ -1,0 +1,40 @@
+const GRML_XI = {
+    async check(file){
+        try {
+            const res = await fetch(`./${file}`);
+            return res.ok ? "ok" : "miss";
+        } catch(e){
+            return "miss";
+        }
+    },
+
+    async scan(){
+        const files = [
+            "HOST.html",
+            "ID.html",
+            "KERNEL.me",
+            "MATRIX.me",
+            "VECTOR.me",
+            "NC.math",
+            "XI-NC3×3.room",
+            "XI-NC6eI6D.room",
+            "XI-NC9×9.room",
+            "X.room.CORE",
+            "X.room.IN",
+            "X.room.OUT",
+            "index.html"
+        ];
+
+        const out = { ok:[], miss:[] };
+
+        for(const f of files){
+            const r = await this.check(f);
+            if(r === "ok") out.ok.push(f);
+            else out.miss.push(f);
+        }
+
+        return out;
+    }
+};
+
+console.log("GRML_XI aktiv");
