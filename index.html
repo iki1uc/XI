@@ -42,7 +42,7 @@ READY       = 100%
 </div>
 
 <script>
-// --- XI-SCAN (einfach, klar, funktioniert) ---
+// --- XI-SCAN ---
 async function XI_SCAN(){
     const files = [
         "HOST.html",
@@ -85,7 +85,7 @@ async function XI_SCAN(){
     return out;
 }
 
-// --- XI → X.room Routing ---
+// --- XI → X.room ---
 function XI_TO_XROOM(name, level){
     if(level === "rot"){
         console.log("XI → X.room.OUT:", name);
@@ -94,6 +94,21 @@ function XI_TO_XROOM(name, level){
     } else {
         console.log("XI → X.room.CORE:", name);
     }
+}
+
+// --- XI → UP ---
+function XI_TO_UP(scan){
+    console.log("XI → UP:", scan);
+}
+
+// --- XI → IN ---
+function XI_TO_IN(scan){
+    console.log("XI → IN:", scan);
+}
+
+// --- XI → IX ---
+function XI_TO_IX(scan){
+    console.log("XI → IX:", scan);
 }
 
 // --- Start ---
@@ -105,14 +120,15 @@ function XI_TO_XROOM(name, level){
     out.innerHTML += "\nGELB  = " + JSON.stringify(scan.gelb);
     out.innerHTML += "\nGRUEN = " + JSON.stringify(scan.gruen);
 
-    // Routing für rote Dateien
+    // Routing
     scan.rot.forEach(f => XI_TO_XROOM(f, "rot"));
-
-    // Routing für gelbe Dateien
     scan.gelb.forEach(f => XI_TO_XROOM(f, "gelb"));
-
-    // Routing für grüne Dateien
     scan.gruen.forEach(f => XI_TO_XROOM(f, "gruen"));
+
+    // UP / IN / IX Verbindung
+    XI_TO_UP(scan);
+    XI_TO_IN(scan);
+    XI_TO_IX(scan);
 })();
 </script>
 
