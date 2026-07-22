@@ -120,12 +120,12 @@ function XI_TO_IX(scan){
     out.innerHTML += "\nGELB  = " + JSON.stringify(scan.gelb);
     out.innerHTML += "\nGRUEN = " + JSON.stringify(scan.gruen);
 
-    // Routing
+    // Routing zu X.room
     scan.rot.forEach(f => XI_TO_XROOM(f, "rot"));
     scan.gelb.forEach(f => XI_TO_XROOM(f, "gelb"));
     scan.gruen.forEach(f => XI_TO_XROOM(f, "gruen"));
 
-    // UP / IN / IX Verbindung
+    // Verbindung zu UP / IN / IX
     XI_TO_UP(scan);
     XI_TO_IN(scan);
     XI_TO_IX(scan);
