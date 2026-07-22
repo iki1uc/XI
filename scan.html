@@ -1,1 +1,42 @@
+async function XI_SCAN(){
+    const files = [
+        "HOST.html",
+        "ID.html",
+        "KERNEL.me",
+        "MATRIX.me",
+        "VECTOR.me",
+        "NC.math",
+        "XI-NC3×3.room",
+        "XI-NC6eI6D.room",
+        "XI-NC9×9.room",
+        "X.room.CORE",
+        "X.room.IN",
+        "X.room.OUT",
+        "index.html"
+    ];
+
+    const out = { rot:[], gelb:[], gruen:[] };
+
+    for(const f of files){
+        try {
+            const res = await fetch(`./${f}`);
+            if(!res.ok){
+                out.rot.push(f);
+                continue;
+            }
+
+            const txt = await res.text();
+            if(txt.trim().length === 0){
+                out.gelb.push(f);
+            } else {
+                out.gruen.push(f);
+            }
+
+        } catch(e){
+            out.rot.push(f);
+        }
+    }
+
+    return out;
+}
 
